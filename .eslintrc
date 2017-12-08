@@ -1,0 +1,17 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "node": true,
+    "jest": true
+  },
+  "extends": ["eslint:recommended", "standard"],
+  "plugins": [
+    "node"
+  ],
+  "rules": {
+    "no-return-await": 0
+  },
+  "parserOptions": {
+    "ecmaVersion": 8
+  }
+}

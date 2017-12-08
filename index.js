@@ -1,21 +1,32 @@
 const puppeteer = require('puppeteer')
 const path = require('path')
 
+/**
+ * Small puppeteer page object pattern implementation
+ * @constructor
+ * @param {Object} options
+ * @param {string} options.scenarioName
+ * @param {string} options.headless
+ * @param {string} options.screenshotsPath
+ */
 class PageObject {
-  constructor (options) {
-    const {
-      scenarioName = '',
-      headless = false,
-      screenshotsPath = 'screenshots'
-    } = options
+  constructor (options = {}) {
+    this.screenshotsPath = options.screenshotsPath || 'screenshots'
+    this.headless = options.headless || false
+    this.scenarioName = options.scenarioName || ''
 
-    this.screenshotsPath = screenshotsPath
-    this.headless = headless
-    this.scenarioName = scenarioName
     this.browser = null
     this.page = null
   }
 
+  /**
+   * Generates screenshot name with this.scenarioName and current date
+   * @example
+   * // returns 'Fri_Dec_08_2017_14:56:01_GMT+0300_(MSK)'
+   * @example
+   * // returns 'scenario-name_Fri_Dec_08_2017_14:56:01_GMT+0300_(MSK)'
+   * @returns {string} - screenshot file name
+   */
   generateScreenshotName () {
     const date = new Date()
     const fileNameDate = date.toString().replace(/ /gm, '_')
@@ -24,9 +35,12 @@ class PageObject {
       return `${this.scenarioName}_${fileNameDate}.jpg`
     }
 
-    return fileNameDate
+    return `${fileNameDate}.jpg`
   }
 
+  /**
+   * Init page object and define this.browser and this.page instances
+   */
   async init () {
     this.browser = await puppeteer.launch({
       headless: this.headless
@@ -34,16 +48,33 @@ class PageObject {
     this.page = await this.browser.newPage()
   }
 
-  async screenshot () {
-    return await this.page.screenshot({
-      path: path.join(this.screenshotsPath, this.generateScreenshotName())
-    })
+  /**
+   * Takes screenshot and save it to this.screenshotsPath
+   * By default to __dirname/screenshots
+   * @param {object} param - screenshot parameters
+   * @returns {Promise<void>}
+   */
+  async screenshot (params) {
+    return await this.page.screenshot(
+      Object.assign({
+        path: path.join(this.screenshotsPath, this.generateScreenshotName())
+      }, params)
+    )
   }
 
+  /**
+   * Opens url with page instance
+   * @param {string} url
+   * @returns {Promise<void>}
+   */
   async open (url) {
     return await this.page.goto(url)
   }
 
+  /**
+   * Closes current page instance
+   * @returns {Promise<void>}
+   */
   async close () {
     await this.browser.close()
   }

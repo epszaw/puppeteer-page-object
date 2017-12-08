@@ -4,3 +4,4 @@ package-lock.json
 screenshots/*
 .vscode
 .idea
+__test__/screenshots
