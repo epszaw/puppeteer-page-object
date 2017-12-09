@@ -1,5 +1,3 @@
-const fs = require('fs')
-const path = require('path')
 const PageObject = require('../index')
 
 class YaPageObject extends PageObject {
@@ -29,7 +27,10 @@ describe('Extended functionality with methods', () => {
     await yaPage.close()
   })
 
-  const yaPage = new YaPageObject()
+  const yaPage = new YaPageObject({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  })
 
   test('Pass all test via page object instance', async () => {
     await yaPage.init()

@@ -4,12 +4,14 @@ const PageObject = require('../index')
 
 describe('Main class functionality', () => {
   const pageObject = new PageObject({
-    screenshotsPath: '__test__/screenshots'
+    headless: true,
+    screenshotsPath: '__test__/screenshots',
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
   })
   const targetUrl = 'https://ya.ru/'
   const screenshotsDir = path.join(__dirname, 'screenshots')
 
-  afterAll(async() => {
+  afterAll(async () => {
     await pageObject.close()
   })
 
@@ -30,9 +32,6 @@ describe('Main class functionality', () => {
 
   test('.screenshot() takes screenshot and save it to __test__/screenshots', async () => {
     await pageObject.open(targetUrl)
-
-    const pageUrl = await pageObject.page.url()
-
     await pageObject.screenshot()
 
     const screenshots = fs.readdirSync(screenshotsDir)

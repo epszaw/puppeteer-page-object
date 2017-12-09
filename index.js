@@ -8,12 +8,14 @@ const path = require('path')
  * @param {string} options.scenarioName
  * @param {string} options.headless
  * @param {string} options.screenshotsPath
+ * @param {Array<string>} options.args
  */
 class PageObject {
   constructor (options = {}) {
     this.screenshotsPath = options.screenshotsPath || 'screenshots'
     this.headless = options.headless || false
     this.scenarioName = options.scenarioName || ''
+    this.args = options.browserArgs || []
 
     this.browser = null
     this.page = null
@@ -43,7 +45,8 @@ class PageObject {
    */
   async init () {
     this.browser = await puppeteer.launch({
-      headless: this.headless
+      headless: this.headless,
+      args: this.args
     })
     this.page = await this.browser.newPage()
   }
