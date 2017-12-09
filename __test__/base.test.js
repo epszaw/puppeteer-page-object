@@ -1,5 +1,3 @@
-const fs = require('fs')
-const path = require('path')
 const PageObject = require('../index')
 
 describe('Main class functionality', () => {
@@ -9,7 +7,6 @@ describe('Main class functionality', () => {
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   })
   const targetUrl = 'https://ya.ru/'
-  const screenshotsDir = path.join(__dirname, 'screenshots')
 
   afterAll(async () => {
     await pageObject.close()
@@ -28,18 +25,5 @@ describe('Main class functionality', () => {
     const pageUrl = await pageObject.page.url()
 
     expect(pageUrl).toEqual(targetUrl)
-  })
-
-  test('.screenshot() takes screenshot and save it to __test__/screenshots', async () => {
-    await pageObject.open(targetUrl)
-    await pageObject.screenshot()
-
-    const screenshots = fs.readdirSync(screenshotsDir)
-
-    expect(screenshots).not.toHaveLength(0)
-
-    screenshots.forEach((screenshot) => {
-      fs.unlinkSync(path.join(screenshotsDir, screenshot))
-    })
   })
 })
