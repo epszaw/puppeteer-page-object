@@ -1,19 +1,19 @@
 const PageObject = require('../index')
 
 class YaPageObject extends PageObject {
-  async typeRequest (request) {
+  async typeRequest(request) {
     await this.page.type('[name=text]', request)
   }
 
-  async pressEnter () {
+  async pressEnter() {
     await this.page.keyboard.down('Enter')
   }
 
-  async assertResultsWereShowed () {
+  async assertResultsWereShowed() {
     await this.page.waitForSelector('.serp-list')
   }
 
-  async assertResultsNotEmpty () {
+  async assertResultsNotEmpty() {
     const items = await this.page.$('.serp-item')
 
     return items.length !== 0
@@ -28,7 +28,6 @@ describe('Extended functionality with methods', () => {
   })
 
   const yaPage = new YaPageObject({
-    headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   })
 

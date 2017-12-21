@@ -2,8 +2,6 @@ const PageObject = require('../index')
 
 describe('Main class functionality', () => {
   const pageObject = new PageObject({
-    headless: true,
-    screenshotsPath: '__test__/screenshots',
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   })
   const targetUrl = 'https://ya.ru/'

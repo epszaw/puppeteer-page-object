@@ -11,11 +11,11 @@ const path = require('path')
  * @param {Array<string>} options.args
  */
 class PageObject {
-  constructor (options = {}) {
+  constructor(options = {}) {
     this.screenshotsPath = options.screenshotsPath || 'screenshots'
-    this.headless = options.headless || false
+    this.headless = options.headless || true
     this.scenarioName = options.scenarioName || ''
-    this.args = options.browserArgs || []
+    this.args = options.args || []
 
     this.browser = null
     this.page = null
@@ -29,7 +29,7 @@ class PageObject {
    * // returns 'scenario-name_Fri_Dec_08_2017_14:56:01_GMT+0300_(MSK)'
    * @returns {string} - screenshot file name
    */
-  generateScreenshotName () {
+  generateScreenshotName() {
     const date = new Date()
     const fileNameDate = date.toString().replace(/ /gm, '_')
 
@@ -43,7 +43,7 @@ class PageObject {
   /**
    * Init page object and define this.browser and this.page instances
    */
-  async init () {
+  async init() {
     this.browser = await puppeteer.launch({
       headless: this.headless,
       args: this.args
@@ -57,11 +57,14 @@ class PageObject {
    * @param {object} param - screenshot parameters
    * @returns {Promise<void>}
    */
-  async screenshot (params) {
+  async screenshot(params) {
     return await this.page.screenshot(
-      Object.assign({
-        path: path.join(this.screenshotsPath, this.generateScreenshotName())
-      }, params)
+      Object.assign(
+        {
+          path: path.join(this.screenshotsPath, this.generateScreenshotName())
+        },
+        params
+      )
     )
   }
 
@@ -70,7 +73,7 @@ class PageObject {
    * @param {string} url
    * @returns {Promise<void>}
    */
-  async open (url) {
+  async open(url) {
     return await this.page.goto(url)
   }
 
@@ -78,8 +81,60 @@ class PageObject {
    * Closes current page instance
    * @returns {Promise<void>}
    */
-  async close () {
+  async close() {
     await this.browser.close()
+  }
+
+  /**
+   * Returns elements by xpath selector
+   * Original code was present here:
+   * https://github.com/GoogleChrome/puppeteer/issues/537#issuecomment-334918553
+   * by https://github.com/aslushnikov
+   * and was modified by https://github.com/lamartire
+   * @param {String} path
+   * @returns {Promise<Element[]|Element|null>}
+   */
+  async xpath(path) {
+    const resultsHandle = await this.page.evaluateHandle(path => {
+      let query = document.evaluate(
+        path,
+        document,
+        null,
+        XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+        null
+      )
+      let results = []
+
+      for (let i = 0; i < query.snapshotLength; ++i) {
+        results.push(query.snapshotItem(i))
+      }
+
+      return results
+    }, path)
+
+    const properties = await resultsHandle.getProperties()
+    const result = []
+    const releasePromises = []
+
+    for (const property of properties.values()) {
+      const element = property.asElement()
+
+      if (element) {
+        result.push(element)
+      } else {
+        releasePromises.push(property.dispose())
+      }
+    }
+
+    await Promise.all(releasePromises)
+
+    if (result.length === 0) {
+      return null
+    } else if (result.length === 1) {
+      return result[0]
+    }
+
+    return result
   }
 }
 

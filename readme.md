@@ -94,3 +94,4 @@ Sugar for `this.page.screenshot` ([https://github.com/GoogleChrome/puppeteer/blo
 `.generateScreenshotName(): string` - generates unique screenshot name with test
 date and scenario name (if it defined in class instance).
 
+`.xpath(selector: string): Node[]|Node|null` - find elements by `xpath` selectors.
