@@ -48,6 +48,7 @@ class PageObject {
       headless: this.headless,
       args: this.args
     })
+
     this.page = await this.browser.newPage()
   }
 
@@ -128,7 +129,7 @@ class PageObject {
 
     await Promise.all(releasePromises)
 
-    if (result.length === 0) {
+    if (!result || !result.length) {
       return null
     } else if (result.length === 1) {
       return result[0]

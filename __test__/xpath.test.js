@@ -29,7 +29,6 @@ describe('xpath method implementation', () => {
     const results = await pageObject.xpath('//*[contains(@class, "serp-item")]')
 
     expect(results.length).not.toEqual(0)
-    expect(results.length).toBeDefined()
     expect(results).not.toBeNull()
   })
 
