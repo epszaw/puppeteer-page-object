@@ -1,6 +1,6 @@
 {
   "name": "puppeteer-page-object",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Small puppeteer page object pattern implementation",
   "main": "index.js",
   "scripts": {
@@ -19,13 +19,13 @@
   "author": "lamartire",
   "license": "ISC",
   "dependencies": {
-    "puppeteer": "^0.13.0"
+    "puppeteer": "^1.6.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.3",
-    "eslint": "^4.13.1",
+    "eslint": "^5.2.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.4.0",
-    "jest": "^22.0.3"
+    "jest": "^23.4.2"
   }
 }

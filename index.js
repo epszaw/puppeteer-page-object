@@ -24,9 +24,9 @@ class PageObject {
   /**
    * Generates screenshot name with this.scenarioName and current date
    * @example
-   * // returns 'Fri_Dec_08_2017_14:56:01_GMT+0300_(MSK)'
+   * returns 'Fri_Dec_08_2017_14:56:01_GMT+0300_(MSK)'
    * @example
-   * // returns 'scenario-name_Fri_Dec_08_2017_14:56:01_GMT+0300_(MSK)'
+   * returns 'scenario-name_Fri_Dec_08_2017_14:56:01_GMT+0300_(MSK)'
    * @returns {string} - screenshot file name
    */
   generateScreenshotName() {
@@ -88,6 +88,7 @@ class PageObject {
 
   /**
    * Returns elements by xpath selector
+   *
    * Original code was present here:
    * https://github.com/GoogleChrome/puppeteer/issues/537#issuecomment-334918553
    * by https://github.com/aslushnikov
