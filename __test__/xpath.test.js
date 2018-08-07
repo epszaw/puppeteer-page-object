@@ -33,7 +33,9 @@ describe('xpath method implementation', () => {
   })
 
   test('Returns null when elements not found', async () => {
-    const fakeElement = await pageObject.xpath('//*[@class="395f6392-0137-49ec-9276-0a3863c468a4"]')
+    const fakeElement = await pageObject.xpath(
+      '//*[@class="395f6392-0137-49ec-9276-0a3863c468a4"]'
+    )
 
     expect(fakeElement).toBeNull()
   })

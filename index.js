@@ -21,13 +21,13 @@ class PageObject {
     this.page = null
   }
 
-  /**
+  /**˝
    * Generates screenshot name with this.scenarioName and current date
    * @example
    * returns 'Fri_Dec_08_2017_14:56:01_GMT+0300_(MSK)'
    * @example
    * returns 'scenario-name_Fri_Dec_08_2017_14:56:01_GMT+0300_(MSK)'
-   * @returns {string} - screenshot file name
+   * @returns {string} screenshot file name
    */
   generateScreenshotName() {
     const date = new Date()
@@ -55,7 +55,7 @@ class PageObject {
   /**
    * Takes screenshot and save it to this.screenshotsPath
    * By default to __dirname/screenshots
-   * @param {object} param - screenshot parameters
+   * @param {object} params screenshot parameters
    * @returns {Promise<void>}
    */
   async screenshot(params) {
@@ -98,7 +98,7 @@ class PageObject {
    */
   async xpath(path) {
     const resultsHandle = await this.page.evaluateHandle(path => {
-      let query = document.evaluate(
+      const query = document.evaluate(
         path,
         document,
         null,
