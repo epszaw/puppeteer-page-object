@@ -19,7 +19,7 @@
   "author": "lamartire",
   "license": "ISC",
   "dependencies": {
-    "puppeteer": "1.6.1"
+    "puppeteer": "1.7.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.3",
