@@ -15,13 +15,13 @@ class PageObject {
     this.screenshotsPath = options.screenshotsPath || 'screenshots'
     this.headless = options.headless || true
     this.scenarioName = options.scenarioName || ''
-    this.args = options.args || []
+    this.args = options.args || ['--no-sandbox', '--disable-setuid-sandbox']
 
     this.browser = null
     this.page = null
   }
 
-  /**˝
+  /**
    * Generates screenshot name with this.scenarioName and current date
    * @example
    * returns 'Fri_Dec_08_2017_14:56:01_GMT+0300_(MSK)'
@@ -84,59 +84,6 @@ class PageObject {
    */
   async close() {
     await this.browser.close()
-  }
-
-  /**
-   * Returns elements by xpath selector
-   *
-   * Original code was present here:
-   * https://github.com/GoogleChrome/puppeteer/issues/537#issuecomment-334918553
-   * by https://github.com/aslushnikov
-   * and was modified by https://github.com/lamartire
-   * @param {String} path
-   * @returns {Promise<Element[]|Element|null>}
-   */
-  async xpath(path) {
-    const resultsHandle = await this.page.evaluateHandle(path => {
-      const query = document.evaluate(
-        path,
-        document,
-        null,
-        XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
-        null
-      )
-      let results = []
-
-      for (let i = 0; i < query.snapshotLength; ++i) {
-        results.push(query.snapshotItem(i))
-      }
-
-      return results
-    }, path)
-
-    const properties = await resultsHandle.getProperties()
-    const result = []
-    const releasePromises = []
-
-    for (const property of properties.values()) {
-      const element = property.asElement()
-
-      if (element) {
-        result.push(element)
-      } else {
-        releasePromises.push(property.dispose())
-      }
-    }
-
-    await Promise.all(releasePromises)
-
-    if (!result || !result.length) {
-      return null
-    } else if (result.length === 1) {
-      return result[0]
-    }
-
-    return result
   }
 }
 

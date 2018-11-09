@@ -1,9 +1,7 @@
 const PageObject = require('../index')
 
 describe('Main class functionality', () => {
-  const pageObject = new PageObject({
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
-  })
+  const pageObject = new PageObject()
   const targetUrl = 'https://ya.ru/'
 
   afterAll(async () => {

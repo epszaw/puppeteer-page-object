@@ -27,9 +27,7 @@ describe('Extended functionality with methods', () => {
     await yaPage.close()
   })
 
-  const yaPage = new YaPageObject({
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
-  })
+  const yaPage = new YaPageObject()
 
   test('Pass all test via page object instance', async () => {
     await yaPage.init()

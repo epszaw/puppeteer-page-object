@@ -21,6 +21,8 @@ yarn add -D puppeteer-page-object
 
 Follow examples bellow for fast start.
 
+You can also check some examples with cucumber [here](https://github.com/lamartire/puppeteer-cucumber-test).
+
 ### Base page object
 
 About all properties you can [here](#properties).
@@ -29,16 +31,14 @@ About all properties you can [here](#properties).
 const PageObject = require('puppeteer-page-object')
 
 const examplePageObject = new PageObject({
-  headless: true,
   scenarioName: 'example-scenario'
 })
-
-;(async () => {
+;async () => {
   await examplePageObject.init()
   await examplePageObject.open('https://example.com')
   await examplePageObject.screenshot()
   await examplePageObject.close()
-})
+}
 ```
 
 ### Extending
@@ -50,48 +50,36 @@ properties:
 const PageObject = require('puppeteer-page-object')
 
 class ExamplePage extends PageObject {
-  async typeToInput (text) {
+  async typeToInput(text) {
     await this.page.type('#input', text)
   }
 }
 
 const examplePageObject = new ExamplePage()
-
-;(async () => {
+;async () => {
   await examplePageObject.init()
   await examplePageObject.open('https://example.com')
   await examplePageObject.screenshot()
   await examplePageObject.typeToInput('Hello world')
   await examplePageObject.close()
-})
+}
 ```
 
 ## Properties
 
-`headless: Boolean` - headless mode. Default value: `false`
-
-`scenarioName: string` - scenario name to creates better screenshots names.
-Default value: `null`
-
-`screenshotsPath: string` - path to save screenshots. Default value:
-`screenshots`
+| Name              | Type       | Default value                                  | Description                                        |
+| ----------------- | ---------- | ---------------------------------------------- | -------------------------------------------------- |
+| `headless`        | `boolean`  | `true`                                         | Headless mode.                                     |
+| `scenarioName`    | `string`   | `null`                                         | Scenario name to creates better screenshots names. |
+| `screenshotsPath` | `string`   | `screenshots`                                  | Path to save screenshots.                          |
+| `args`            | `string[]` | `['--no-sandbox', '--disable-setuid-sandbox']` | Args for puppeteer browser launch.                 |
 
 ## Methods
 
-`.init(): Promise<void>` - initialize page object, creates `browser` and `page`
-instance. Must be called before all actions with `browser` and `page`
-properties.
-
-`.open(url: string): Promise<void>` - opens given `url`. Sugar for
-`this.page.goto` ([https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagegotourl-options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagegotourl-options)).
-
-`.close(): Promise<void>` - closes page. Sugar for `this.browser.close` ([https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#browserclose](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#browserclose)).
-
-`.screenshot(params?: object): Promise<void>` - capture screenshot and save it to dir defined
-by `this.screenshotsPath`. You can alse pass params-object.
-Sugar for `this.page.screenshot` ([https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagescreenshotoptions](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagescreenshotoptions))
-
-`.generateScreenshotName(): string` - generates unique screenshot name with test
-date and scenario name (if it defined in class instance).
-
-`.xpath(selector: string): Node[]|Node|null` - find elements by `xpath` selectors.
+| Name                           | Returns         | Description                                                                                                                                                                                                                           |
+| ------------------------------ | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.init()`                      | `Promise<void>` | Initialize page object, creates `browser` and `page` instance. Must be called before all actions with `browser` and `page` properties.                                                                                                |
+| `.open(url: string)`           | `Promise<void>` | Opens given `url`. Sugar for [`this.page.goto`](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagegotourl-options).                                                                                               |
+| `.close()`                     | `Promise<void>` | Closes page. Sugar for [`this.browser.close`](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#browserclose).                                                                                                        |
+| `.screenshot(params?: object)` | `Promise<void>` | Capture screenshot and save it to dir defined by `this.screenshotsPath`. You can alse pass params-object. Sugar for [`this.page.screenshot`](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagescreenshotoptions) |
+| `.generateScreenshotName()`    | `string`        | Generates unique screenshot name with test date and scenario name (if it defined in class instance).                                                                                                                                  |
