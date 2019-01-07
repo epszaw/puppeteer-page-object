@@ -1,4 +1,4 @@
-const PageObject = require('../index')
+const PageObject = require('../src/index')
 
 describe('Main class functionality', () => {
   const pageObject = new PageObject()
@@ -8,14 +8,18 @@ describe('Main class functionality', () => {
     await pageObject.close()
   })
 
-  test('.init() creates browser and page instance', async () => {
+  it('.init() creates browser and page instance', async () => {
+    expect.assertions(2)
+
     await pageObject.init()
 
     expect(pageObject.browser).not.toBeNull()
     expect(pageObject.page).not.toBeNull()
   })
 
-  test('.open(url) opens url in browser', async () => {
+  it('.open(url) opens url in browser', async () => {
+    expect.assertions(1)
+
     await pageObject.open(targetUrl)
 
     const pageUrl = await pageObject.page.url()

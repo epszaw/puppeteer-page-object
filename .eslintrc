@@ -10,26 +10,13 @@
     "prettier"
   ],
   "plugins": [
-    "react",
     "prettier"
   ],
-  "globals": {
-    "XPathResult": true
-  },
   "rules": {
     "prettier/prettier": ["error", {
-      "printWidth": 100,
       "semi": false,
       "singleQuote": true,
-      "trailingComma": "none",
-      "bracketSpacing": false
+      "trailingComma": "all",
     }]
-  },
-  "parserOptions": {
-    "ecmaVersion": 8,
-    "ecmaFeatures": {
-      "jsx": true,
-      "experimentalObjectRestSpread": true
-    }
   }
 }
