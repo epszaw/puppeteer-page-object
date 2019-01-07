@@ -1,8 +1,8 @@
 {
   "name": "puppeteer-page-object",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Small puppeteer page object pattern implementation",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "node_modules/jest/bin/jest.js"
   },
@@ -10,12 +10,7 @@
     "type": "github",
     "url": "https://github.com/lamartire/puppeteer-page-object"
   },
-  "keywords": [
-    "puppeteer",
-    "testing",
-    "bdd",
-    "page object"
-  ],
+  "keywords": ["puppeteer", "testing", "bdd", "page object"],
   "author": "lamartire",
   "license": "ISC",
   "dependencies": {
@@ -26,6 +21,7 @@
     "eslint": "^5.8.0",
     "eslint-config-prettier": "^3.0.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "jest": "21.2.1"
+    "jest": "21.2.1",
+    "prettier": "^1.15.3"
   }
 }

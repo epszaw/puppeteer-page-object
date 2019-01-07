@@ -13,7 +13,7 @@ const path = require('path')
 class PageObject {
   constructor(options = {}) {
     this.screenshotsPath = options.screenshotsPath || 'screenshots'
-    this.headless = options.headless || true
+    this.headless = options.headless !== undefined ? options.headless : true
     this.scenarioName = options.scenarioName || ''
     this.args = options.args || ['--no-sandbox', '--disable-setuid-sandbox']
 

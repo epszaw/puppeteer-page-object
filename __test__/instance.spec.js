@@ -1,4 +1,4 @@
-const PageObject = require('../index')
+const PageObject = require('../src/index')
 
 class YaPageObject extends PageObject {
   async typeRequest(request) {
@@ -29,9 +29,10 @@ describe('Extended functionality with methods', () => {
 
   const yaPage = new YaPageObject()
 
-  test('Pass all test via page object instance', async () => {
-    await yaPage.init()
+  it('Pass all test via page object instance', async () => {
+    expect.assertions(1)
 
+    await yaPage.init()
     await yaPage.open(targetUrl)
     await yaPage.typeRequest('Hello world!')
     await yaPage.pressEnter()
