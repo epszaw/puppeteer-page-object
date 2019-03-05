@@ -46,7 +46,7 @@ class PageObject {
   async init() {
     this.browser = await puppeteer.launch({
       headless: this.headless,
-      args: this.args
+      args: this.args,
     })
 
     this.page = await this.browser.newPage()
@@ -62,10 +62,10 @@ class PageObject {
     return await this.page.screenshot(
       Object.assign(
         {
-          path: path.join(this.screenshotsPath, this.generateScreenshotName())
+          path: path.join(this.screenshotsPath, this.generateScreenshotName()),
         },
-        params
-      )
+        params,
+      ),
     )
   }
 
