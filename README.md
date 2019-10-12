@@ -1,4 +1,4 @@
-# Puppeteer page object [![Build Status](https://travis-ci.org/lamartire/puppeteer-page-object.svg?branch=master)](https://travis-ci.org/lamartire/puppeteer-page-object) [![Greenkeeper badge](https://badges.greenkeeper.io/lamartire/puppeteer-page-object.svg)](https://greenkeeper.io/)
+# Puppeteer page object [![Build Status](https://travis-ci.org/lamartire/puppeteer-page-object.svg?branch=master)](https://travis-ci.org/lamartire/puppeteer-page-object)
 
 Small wrapper on [puppeteer](https://github.com/GoogleChrome/puppeteer/) allows
 to you use page object pattern with clean steps and incapsulated methods.
