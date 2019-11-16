@@ -4,10 +4,10 @@
   "description": "Small puppeteer page object pattern implementation",
   "main": "./src/index.js",
   "scripts": {
-    "test": "node_modules/jest/bin/jest.js",
     "commit": "git-cz",
     "lint": "eslint 'src/**/*.{js,jsx,json}'",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "test": "node_modules/jest/bin/jest.js"
   },
   "repository": {
     "type": "github",
@@ -25,25 +25,25 @@
     "puppeteer": "^1.20.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^7.6.1",
-    "@commitlint/config-conventional": "^7.6.0",
-    "babel-eslint": "^10.0.1",
-    "commitizen": "^3.1.1",
-    "cz-conventional-changelog": "^2.1.0",
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.2.0",
-    "eslint-config-prettier-standard": "^2.0.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.17.2",
-    "eslint-plugin-node": "^9.0.1",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "husky": "^2.2.0",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "babel-eslint": "^10.0.3",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-config-prettier-standard": "^3.0.1",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^3.0.9",
     "jest": "24.1.0",
-    "lint-staged": "^8.1.6",
-    "poehali-config": "^0.2.0",
-    "prettier": "^1.17.1"
+    "lint-staged": "^9.4.3",
+    "poehali-config": "^0.3.0",
+    "prettier": "^1.19.1"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json}": [
@@ -76,9 +76,13 @@
       "prettier/standard",
       "standard",
       "prettier",
+      "prettier/standard",
+      "standard",
+      "prettier",
       "prettier/standard"
     ],
     "plugins": [
+      "prettier",
       "prettier",
       "prettier"
     ],
@@ -101,6 +105,6 @@
   ],
   "sharec": {
     "config": "poehali-config",
-    "version": "0.2.0"
+    "version": "0.3.0"
   }
 }
