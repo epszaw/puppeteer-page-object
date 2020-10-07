@@ -46,9 +46,9 @@ class PageObject {
    */
   async init() {
     this.browser = await puppeteer.launch({
-      ...this.launchOptions,
       headless: this.headless,
       args: this.args,
+      ...this.launchOptions,
     })
 
     this.page = await this.browser.newPage()
