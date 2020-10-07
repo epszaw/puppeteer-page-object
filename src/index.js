@@ -16,6 +16,7 @@ class PageObject {
     this.headless = options.headless !== undefined ? options.headless : true
     this.scenarioName = options.scenarioName || ''
     this.args = options.args || ['--no-sandbox', '--disable-setuid-sandbox']
+    this.launchOptions = options.launchOptions || {}
 
     this.browser = null
     this.page = null
@@ -45,6 +46,7 @@ class PageObject {
    */
   async init() {
     this.browser = await puppeteer.launch({
+      ...this.launchOptions,
       headless: this.headless,
       args: this.args,
     })
