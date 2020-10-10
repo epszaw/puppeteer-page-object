@@ -1,6 +1,6 @@
 {
   "name": "puppeteer-page-object",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Small puppeteer page object pattern implementation",
   "main": "./src/index.js",
   "scripts": {
