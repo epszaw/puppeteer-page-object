@@ -3437,6 +3437,14 @@ js-yaml@>=3.13.1, js-yaml@^3.13.1:
     argparse "^1.0.7"
     esprima "^4.0.0"
 
+js-yaml@^3.12.0:
+  version "3.14.1"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.14.1.tgz#dae812fdb3825fa306609a8717383c50c36a0537"
+  integrity sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==
+  dependencies:
+    argparse "^1.0.7"
+    esprima "^4.0.0"
+
 jsbn@~0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
@@ -3514,9 +3522,9 @@ json5@^2.1.0:
     minimist "^1.2.0"
 
 json8@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/json8/-/json8-1.0.1.tgz#5247e3cc2c136569139a055266b5dd2d14ff849b"
-  integrity sha512-asYT88KNocH7mrdRlThjj3DXImoalcclsrjTnpCquKJehd49f3GyKSZuhHgSMWAZ4RcJfyx2lytBYaSNbwpzxg==
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/json8/-/json8-1.0.3.tgz#3248f4effbf9b95700fbc3acaa9475b48a15843c"
+  integrity sha512-rYGuGgWTmG0dzYwb137fIj5XWiezWBNhlyZpvf7okbHvCQ55X5S+1iuAIfzpPFGTYKkgLI8XX0wjsk/kse4jHA==
 
 jsonfile@^4.0.0:
   version "4.0.0"
